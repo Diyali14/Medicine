@@ -1,6 +1,7 @@
 package com.inventory.hospitalinventory.controller;
 
 import com.inventory.hospitalinventory.dto.InventoryRequestDTO;
+import com.inventory.hospitalinventory.dto.UseMedicineRequestDTO;
 import com.inventory.hospitalinventory.entity.InventoryItem;
 import com.inventory.hospitalinventory.service.InventoryService;
 import jakarta.validation.Valid;
@@ -33,5 +34,15 @@ public class InventoryController {
         return ResponseEntity.ok(
                 inventoryService.getAllItems()
         );
+    }
+
+    @PostMapping("/use")
+    public ResponseEntity<String> useMedicine(
+            @RequestBody UseMedicineRequestDTO dto
+    ) {
+
+        inventoryService.useMedicine(dto);
+
+        return ResponseEntity.ok("Medicine consumed successfully");
     }
 }
